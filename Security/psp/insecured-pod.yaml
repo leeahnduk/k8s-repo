@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-insecured
+  labels:
+    app: nginx
+spec:
+  containers:
+  - name: nginx-insecured
+    image: nginx
+    securityContext:
+      privileged: true

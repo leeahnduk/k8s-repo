@@ -1,0 +1,20 @@
+apiVersion: apps/v1 
+kind: Deployment
+metadata:
+  name: todolist-deployment
+  namespace: securitydemo
+spec:
+  selector:
+    matchLabels:
+      app: todolist
+  replicas: 1 
+  template:
+    metadata:
+      labels:
+        app: todolist
+    spec:
+      containers:
+      - name: todolist
+        image: prologic/todo:latest
+        ports:
+        - containerPort: 8000

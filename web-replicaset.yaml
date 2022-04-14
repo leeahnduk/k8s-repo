@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: webserver-rs
+  labels:
+    app: webserver
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: webserver
+  template:
+    metadata:
+      labels:
+        app: webserver
+    spec:
+      containers:
+      - name: frontend
+        image: asia-southeast1-docker.pkg.dev/authentic-codex-307607/web-repo/web-app:v1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80

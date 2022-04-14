@@ -1,0 +1,8 @@
+admissionWhitelistPatterns:
+- namePattern: asia-southeast1-docker.pkg.dev/authentic-codex-307607/web-repo/*
+- namePattern: asia-southeast1-docker.pkg.dev/authentic-codex-307607/*
+globalPolicyEvaluationMode: ENABLE
+defaultAdmissionRule:
+  evaluationMode: ALWAYS_DENY
+  enforcementMode: ENFORCED_BLOCK_AND_AUDIT_LOG
+name: projects/authentic-codex-307607/policy

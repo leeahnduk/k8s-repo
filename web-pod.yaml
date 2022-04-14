@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: webserver-pod
+spec:
+  containers:
+  - name: frontend
+    image: asia-southeast1-docker.pkg.dev/authentic-codex-307607/web-repo/web-app:v1
+    imagePullPolicy: Always
+    ports:
+    - name: web
+      containerPort: 80
