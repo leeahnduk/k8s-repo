@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stable-diffusion-webui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: stable-diffusion-webui
+  template:
+    metadata:
+      labels:
+        app: stable-diffusion-webui
+    spec:
+      nodeSelector:
+        cloud.google.com/gke-accelerator: "nvidia-tesla-t4"
+        # remove this node selector if you don't want to use spot
+        cloud.google.com/gke-spot: "true"
+      containers:
+      - name: sd
+        image: us-central1-docker.pkg.dev/<Project_ID>/sd-repo/sd-webui:inference
+        ports:
+        - containerPort: 7860
+        env:
+        - name: LD_LIBRARY_PATH
+          value: /usr/local/nvidia/lib64
+        resources:
+          limits:
+            nvidia.com/gpu: "1"
+          requests:
+            cpu: "3500m"
+            memory: "14Gi"
+            ephemeral-storage: 10Gi
